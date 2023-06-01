@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class jump : MonoBehaviour
 {
@@ -10,6 +12,7 @@ public class jump : MonoBehaviour
     [SerializeField] float m_jumpPower = 15f;
     /// <summary>ì¸óÕÇ…âûÇ∂Çƒç∂âEÇîΩì]Ç≥ÇπÇÈÇ©Ç«Ç§Ç©ÇÃÉtÉâÉO</summary>
     [SerializeField] bool m_flipX = false;
+    [SerializeField] Text _text;
     Rigidbody2D m_rb = default;
     SpriteRenderer m_sprite = default;
    
@@ -18,7 +21,7 @@ public class jump : MonoBehaviour
     float m_scaleX;
     
     int _wjump = 0;
-    
+    int _score = 0;
 
 
     // Start is called before the first frame update
@@ -94,15 +97,30 @@ public class jump : MonoBehaviour
         {
             _wjump = 0;
         }
+        if (collision.gameObject.CompareTag("enemy"))
+        {
+            ChangeScene();
+        }
+        
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("enemy"))
         {
-            m_rb.AddForce(Vector2.up * m_jumpPower *2, ForceMode2D.Impulse);
+            m_rb.AddForce(Vector2.up * m_jumpPower *1.5f, ForceMode2D.Impulse);
 
             _wjump += 1;
         }
+        if (collision.gameObject.CompareTag("item"))
+        {
+            _score++;
+            Destroy(collision.gameObject);
+            _text.text = _score.ToString("00");
+        }
+    }
+    void ChangeScene()
+    {
+        SceneManager.LoadScene("gameOver");
     }
 }
 
