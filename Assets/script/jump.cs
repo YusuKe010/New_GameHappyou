@@ -12,18 +12,22 @@ public class jump : MonoBehaviour
     [SerializeField] bool m_flipX = false;
     Rigidbody2D m_rb = default;
     SpriteRenderer m_sprite = default;
+   
     /// <summary>êÖïΩï˚å¸ÇÃì¸óÕíl</summary>
     float m_h;
     float m_scaleX;
- 
+    
     int _wjump = 0;
+    
 
 
     // Start is called before the first frame update
     void Start()
     {
+
         m_rb = GetComponent<Rigidbody2D>();
         m_sprite = GetComponent<SpriteRenderer>();
+        
     }
 
     // Update is called once per frame
@@ -44,6 +48,8 @@ public class jump : MonoBehaviour
         {
             FlipX(m_h);
         }
+        
+       
 
         Vector2 velocity = m_rb.velocity;
         velocity.x = m_h * m_movePower;
@@ -67,7 +73,7 @@ public class jump : MonoBehaviour
          * Sprite Renderer ÇÃ Flip:X ÇëÄçÏÇµÇƒÇ‡îΩì]Ç∑ÇÈÅB
          * */
         m_scaleX = this.transform.localScale.x;
-
+       
         if (horizontal > 0)
         {
             this.transform.localScale = new Vector3(Mathf.Abs(this.transform.localScale.x), this.transform.localScale.y, this.transform.localScale.z);
@@ -86,9 +92,16 @@ public class jump : MonoBehaviour
         //}
         if (collision.gameObject.CompareTag("Ground"))
         {
-
-
             _wjump = 0;
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("enemy"))
+        {
+            m_rb.AddForce(Vector2.up * m_jumpPower *2, ForceMode2D.Impulse);
+
+            _wjump += 1;
         }
     }
 }

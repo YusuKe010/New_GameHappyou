@@ -21,7 +21,6 @@ public class block : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log("player");
            
                 Debug.Log("block");
                 Destroy(this.gameObject,0.1f);
