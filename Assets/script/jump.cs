@@ -101,6 +101,14 @@ public class jump : MonoBehaviour
         {
             ChangeScene();
         }
+        if (collision.gameObject.CompareTag("house"))
+        {
+            if(_score >= 7)
+            {
+                gameclear();
+            }
+            
+        }
         
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -121,6 +129,10 @@ public class jump : MonoBehaviour
     void ChangeScene()
     {
         SceneManager.LoadScene("gameOver");
+    }
+    void gameclear()
+    {
+        SceneManager.LoadScene("gameClear");
     }
 }
 

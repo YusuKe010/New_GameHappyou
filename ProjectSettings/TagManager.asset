@@ -8,6 +8,7 @@ TagManager:
   - enemy
   - lock
   - item
+  - house
   layers:
   - Default
   - TransparentFX
