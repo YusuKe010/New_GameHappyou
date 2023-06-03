@@ -24,7 +24,7 @@ public class enemy : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log("“–‚½‚Á‚½");
+            //Debug.Log("“–‚½‚Á‚½");
             Destroy(gameObject);
 
         }

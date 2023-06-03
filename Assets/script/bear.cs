@@ -19,7 +19,7 @@ public class bear : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!bearEnabled)
+        if (!bearEnabled && collision.CompareTag("Player"))
         {
             Instantiate(bearPrefab);
             bearEnabled = true;

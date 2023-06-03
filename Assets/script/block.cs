@@ -22,7 +22,7 @@ public class block : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
            
-                Debug.Log("block");
+                //Debug.Log("block");
                 Destroy(this.gameObject,0.1f);
         }
     }
