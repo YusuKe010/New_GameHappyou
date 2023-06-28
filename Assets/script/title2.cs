@@ -8,8 +8,9 @@ public class title2 : MonoBehaviour
     // Start is called before the first frame update
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.KeypadEnter))
+        if (Input.GetKey(KeyCode.Return))
         {
+            Debug.Log("enter");
             ChangeScene();
         }
     }
