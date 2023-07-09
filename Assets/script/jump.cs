@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+
 using UnityEngine.SceneManagement;
 
 public class jump : MonoBehaviour
@@ -12,7 +12,8 @@ public class jump : MonoBehaviour
     [SerializeField] float m_jumpPower = 15f;
     /// <summary>“ü—Í‚É‰‚¶‚Ä¶‰E‚ğ”½“]‚³‚¹‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO</summary>
     [SerializeField] bool m_flipX = false;
-    [SerializeField] Text _text;
+    [SerializeField] scoreManager score;
+    
     Rigidbody2D m_rb = default;
     SpriteRenderer m_sprite = default;
    
@@ -21,7 +22,7 @@ public class jump : MonoBehaviour
     float m_scaleX;
     
     int _wjump = 0;
-    int _score = 0;
+    
 
 
     // Start is called before the first frame update
@@ -88,11 +89,6 @@ public class jump : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        //_isJump = true;
-        //if (collision.gameObject.CompareTag("Ground"))
-        //{
-        //    _isJump = true;
-        //}
         if (collision.gameObject.CompareTag("Ground"))
         {
             _wjump = 0;
@@ -103,7 +99,7 @@ public class jump : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("house"))
         {
-            if(_score >= 7)
+            if(score._Score >= 7)
             {
                 gameclear();
             }
@@ -119,12 +115,7 @@ public class jump : MonoBehaviour
 
             _wjump += 1;
         }
-        if (collision.gameObject.CompareTag("item"))
-        {
-            _score++;
-            Destroy(collision.gameObject);
-            _text.text = _score.ToString("00");
-        }
+        
     }
     void ChangeScene()
     {
